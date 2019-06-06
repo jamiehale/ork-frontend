@@ -1,9 +1,5 @@
-import React, { useState } from 'react';
-import * as R from 'ramda';
-import EntityForm from './EntityForm';
-import UnorderedList from './UnorderedList';
-import ListItem from './ListItem';
-import Button from './Button';
+import React from 'react';
+import EntityView from './components/views/EntityView';
 
 const zhentarim = {
   type: 'group',
@@ -31,75 +27,17 @@ const kella = {
   ]
 };
 
-const defaultEntity = {
-  type: 'creature',
-  subtype: 'npc',
-  name: 'Joe',
-  aliases: [],
-  description: '',
-};
-
 const App = () => {
-  const [entities, setEntities] = useState([defaultEntity]);
-  const [selectedEntity, setSelectedEntity] = useState(undefined);
-  const [operation, setOperation] = useState('viewing');
-
-  const handleSubmit = (entity) => {
-    console.log(entity);
-    if (operation === 'editing') {
-      setEntities(R.update(selectedEntity, entity, entities));
-      setSelectedEntity(undefined);
-    } else {
-      setEntities(R.append(entity, entities));
-    }
-    setOperation('viewing');
-  };
-
-  const handleCancel = () => {
-    setSelectedEntity(undefined);
-    setOperation('viewing');
-  };
-
-  const handleSelect = (i) => (e) => {
-    setSelectedEntity(i);
-    setOperation('editing');
-  };
-
-  const handleAdd = (e) => {
-    setOperation('adding');
-  };
-
-  const entityItems = entities.map((entity, i) => (
-    <ListItem key={i} onClick={handleSelect(i)}>
-      {entity.name} ({entity.type})
-    </ListItem>
-  ));
 
   return (
-    <header>
-      <h1>ORK</h1>
-      <UnorderedList>
-        {entityItems}
-      </UnorderedList>
-      {operation === 'viewing' && (
-        <Button onClick={handleAdd}>New</Button>
-      )}
-      {operation === 'editing' && (
-        <EntityForm
-          entity={entities[selectedEntity]}
-          onSubmit={handleSubmit}
-          onCancel={handleCancel}
-        />
-      )}
-      {operation === 'adding' && (
-        <EntityForm
-          buttonLabel="Create"
-          entity={defaultEntity}
-          onSubmit={handleSubmit}
-          onCancel={handleCancel}
-        />
-      )}
-    </header>
+    <>
+      <header>
+        <h1>ORK</h1>
+      </header>
+      <section>
+        <EntityView />
+      </section>
+    </>
   );
 };
 

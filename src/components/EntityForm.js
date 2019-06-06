@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { allEntityTypes, defaultEntitySubtypeIdFor, entityTypeMap } from './entity-types';
+import { allEntityTypes, defaultEntitySubtypeIdFor, entityTypeMap } from '../entity-types';
 import Option from './Option';
 import Select from './Select';
 import Label from './Label';

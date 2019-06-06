@@ -22,7 +22,40 @@ export const allEntityTypes = [
   {
     id: 'location',
     name: 'Location',
-    subtypes: [],
+    subtypes: [
+      {
+        id: 'continent',
+        name: 'Continent',
+      },
+      {
+        id: 'region',
+        name: 'Region',
+      },
+      {
+        id: 'city',
+        name: 'City',
+      },
+      {
+        id: 'town',
+        name: 'Town',
+      },
+      {
+        id: 'dungeon',
+        name: 'Dungeon',
+      },
+      {
+        id: 'keep',
+        name: 'Keep',
+      },
+      {
+        id: 'encounter',
+        name: 'Encounter',
+      },
+      {
+        id: 'area',
+        name: 'Area',
+      },
+    ],
   },
   {
     id: 'group',

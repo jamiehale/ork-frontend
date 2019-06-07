@@ -1,5 +1,6 @@
-import React, { useCallback, useReducer } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import FlexRow from '../../components/FlexRow';
 import FlexColumn from '../../components/FlexColumn';
 import NodeList from '../../components/NodeList';
@@ -8,6 +9,9 @@ import Button from '../../components/Button';
 import NewNodeDialog from '../../components/NewNodeDialog';
 import NodeForm from '../../components/NodeForm';
 import DefaultLayout from '../../layouts/DefaultLayout';
+import { getNodes, getNodesById } from '../../state/nodes/selectors';
+import * as nodeActions from '../../state/nodes/actions';
+import useLoggingReducer from '../../hooks/logging-reducer';
 import { reducer, initialState } from './reducer';
 import * as actions from './actions';
 
@@ -19,17 +23,13 @@ const RightColumn = styled(FlexColumn)`
   flex-grow: 1;
 `;
 
-const loggingMiddleware = next => (state, action) => {
-  console.log('Before', state);
-  console.log('Action', action);
-  const result = next(state, action);
-  console.log('After', result);
-  return result;
-};
-
-const NodesPage = () => {
-  const loggingReducer = useCallback(loggingMiddleware(reducer));
-  const [state, dispatch] = useReducer(loggingReducer, initialState);
+const NodesPage = ({
+  nodes,
+  nodesById,
+  addNode,
+  updateNode,
+}) => {
+  const [state, dispatch] = useLoggingReducer(reducer, initialState);
 
   const handleNewNodeButtonClick = () => {
     dispatch(actions.showNewNodeDialog());
@@ -44,7 +44,8 @@ const NodesPage = () => {
   };
 
   const handleCreateNode = (newNode) => {
-    dispatch(actions.add(newNode));
+    addNode(newNode);
+    dispatch(actions.cancelCreate());
   };
 
   const handleCancelCreateNode = () => {
@@ -60,7 +61,8 @@ const NodesPage = () => {
   };
 
   const handleUpdate = (updatedNode) => {
-    dispatch(actions.update(updatedNode));
+    updateNode(updatedNode);
+    dispatch(actions.cancelCreate());
   };
 
   const handleCancelUpdate = () => {
@@ -76,7 +78,7 @@ const NodesPage = () => {
         <LeftColumn debug="green">
           <Button onClick={handleNewNodeButtonClick}>New Node</Button>
           <NodeList
-            nodes={state.nodeIds.map(id => state.nodes[id])}
+            nodes={nodes}
             onSelect={handleSelectNode}
             onEdit={handleEditNode}
           />
@@ -93,14 +95,14 @@ const NodesPage = () => {
           {isEditing && (
             <NodeForm
               buttonLabel="Update"
-              node={state.nodes[state.selectedId]}
+              node={nodesById[state.selectedId]}
               onSubmit={handleUpdate}
               onCancel={handleCancelUpdate}
             />
           )}
           {isViewing && (
             <Node
-              node={state.nodes[state.selectedId]}
+              node={nodesById[state.selectedId]}
               onEdit={handleEditNode}
             />
           )}
@@ -116,4 +118,17 @@ const NodesPage = () => {
   );
 };
 
-export default NodesPage;
+const mapStateToProps = state => ({
+  nodes: getNodes(state),
+  nodesById: getNodesById(state),
+});
+
+const mapDispatchToProps = dispatch => ({
+  addNode: (node) => { dispatch(nodeActions.addNode(node)); },
+  updateNode: (node) => { dispatch(nodeActions.updateNode(node)); },
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(NodesPage);

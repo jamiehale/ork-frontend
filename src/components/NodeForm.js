@@ -11,6 +11,7 @@ import AliasList from './AliasList';
 import SubmitButton from './SubmitButton';
 import ButtonRow from './ButtonRow';
 import Button from './Button';
+import useAutoFocus from '../hooks/auto-focus';
 
 const NodeForm = ({
   buttonLabel,
@@ -23,6 +24,7 @@ const NodeForm = ({
   const [name, setName] = useState(node.name);
   const [aliases, setAliases] = useState(node.aliases || []);
   const [description, setDescription] = useState(node.description || '');
+  const focusRef = useAutoFocus();
 
   const handleChangeNodeType = (newType) => {
     setType(newType);
@@ -81,7 +83,7 @@ const NodeForm = ({
       </Fieldset>
       <Fieldset>
         <Label htmlFor="name">Name</Label>
-        <TextInput id="name" value={name} onChange={handleChangeName} />
+        <TextInput ref={focusRef} id="name" value={name} onChange={handleChangeName} />
         <Label htmlFor="aliases">Aliases</Label>
         <AliasList id="aliases" value={aliases} onChange={handleChangeAliases} />
       </Fieldset>

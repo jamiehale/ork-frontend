@@ -12,16 +12,7 @@ import TextInput from './TextInput';
 import ButtonRow from './ButtonRow';
 import SubmitButton from './SubmitButton';
 import Button from './Button';
-
-const useAutoFocus = () => {
-  const ref = useRef(null);
-
-  useEffect(() => {
-    ref.current.focus();
-    ref.current.select();
-  }, []);
-  return ref;
-};
+import useAutoFocus from '../hooks/auto-focus';
 
 const NewNodeDialog = ({
   onNewNode,

@@ -1,8 +1,6 @@
 import * as R from 'ramda';
 
 export const initialState = {
-  nodeIds: [],
-  nodes: {},
   selectedId: undefined,
   editing: false,
 };
@@ -49,34 +47,6 @@ export const reducer = (state, action) => {
       return {
         ...state,
         newNode: undefined,
-      };
-    }
-    case 'add': {
-      const { node } = action.payload;
-      const index = state.nodeIds.length;
-      const id = index + 1;
-      return {
-        ...state,
-        newNode: undefined,
-        nodes: {
-          ...state.nodes,
-          [id]: {
-            ...node,
-            id,
-          },
-        },
-        nodeIds: R.append(id, state.nodes),
-      };
-    }
-    case 'update': {
-      const { node } = action.payload;
-      return {
-        ...state,
-        nodes: {
-          ...state.nodes,
-          [node.id]: node,
-        },
-        editing: false,
       };
     }
     case 'cancelUpdate': {

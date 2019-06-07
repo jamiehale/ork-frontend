@@ -10,7 +10,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_NODE: {
       const { node } = action.payload;
-      const index = state.nodeIds.length;
+      const index = state.ids.length;
       const id = index + 1;
       return {
         ...state,

@@ -31,20 +31,6 @@ export const cancelCreate = () => ({
   type: 'cancelCreate',
 });
 
-export const add = node => ({
-  type: 'add',
-  payload: {
-    node,
-  },
-});
-
-export const update = node => ({
-  type: 'update',
-  payload: {
-    node,
-  },
-});
-
 export const cancelUpdate = () => ({
   type: 'cancelUpdate',
 });

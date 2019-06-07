@@ -21,35 +21,33 @@ const NodeForm = ({
   const [type, setType] = useState(node.type);
   const [subtype, setSubtype] = useState(node.subtype);
   const [name, setName] = useState(node.name);
-  const [aliases, setAliases] = useState(node.aliases);
-  const [description, setDescription] = useState(node.description);
+  const [aliases, setAliases] = useState(node.aliases || []);
+  const [description, setDescription] = useState(node.description || '');
 
-  const handleChangeNodeType = (e) => {
-    const newNodeType = e.target.value;
-    setType(newNodeType);
-    setSubtype(defaultNodeSubtypeIdFor(newNodeType));
+  const handleChangeNodeType = (newType) => {
+    setType(newType);
+    setSubtype(defaultNodeSubtypeIdFor(newType));
   };
 
-  const handleChangeNodeSubtype = (e) => {
-    setSubtype(e.target.value);
+  const handleChangeNodeSubtype = (newSubtype) => {
+    setSubtype(newSubtype);
   };
 
-  const handleChangeName = (e) => {
-    setName(e.target.value);
+  const handleChangeName = (newName) => {
+    setName(newName);
   };
 
   const handleChangeAliases = (newAliases) => {
     setAliases(newAliases);
   };
 
-  const handleChangeDescription = (e) => {
-    setDescription(e.target.value);
+  const handleChangeDescription = (newDescription) => {
+    setDescription(newDescription);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const handleSubmit = () => {
     onSubmit({
+      ...node,
       type,
       subtype,
       name,

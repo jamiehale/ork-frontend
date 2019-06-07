@@ -10,15 +10,15 @@ const AliasList = ({
   value: aliases,
   onChange,
 }) => {
-  const handleChange = index => e => {
-    onChange(R.update(index, e.target.value, aliases));
+  const handleChange = index => (newAlias) => {
+    onChange(R.update(index, newAlias, aliases));
   };
 
-  const handleAddAlias = (e) => {
+  const handleAddAlias = () => {
     onChange(R.append('', aliases));
   };
 
-  const handleRemoveAlias = index => (e) => {
+  const handleRemoveAlias = index => () => {
     onChange(R.remove(index, 1, aliases));
   };
 

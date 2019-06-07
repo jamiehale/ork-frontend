@@ -1,32 +1,35 @@
 import React from 'react';
+import Button from './Button';
 import NodeAliasList from './NodeAliasList';
 
 const Node = ({
   node,
+  onEdit,
 }) => {
+  const handleEdit = () => {
+    onEdit(node.id);
+  };
+
   return (
-    <section>
-      {node ? (
-        <>
-          <h2>{node.name}</h2>
-          <h3>
-            {node.type}
-            {node.subtype && (
-              <>
-                &nbsp;
-                ({node.subtype})
-              </>
-            )}
-          </h3>
-          <h3>Aliases</h3>
-          <NodeAliasList node={node} />
-          <h3>Description</h3>
-          <p>{node.description}</p>
-        </>
-      ) : (
-        <h2>Loading...</h2>
-      )}
-    </section>
+    <>
+      <Button onClick={handleEdit}>Edit</Button>
+      <section>
+        <h2>{node.name}</h2>
+        <h3>
+          {node.type}
+          {node.subtype && (
+            <>
+              &nbsp;
+              ({node.subtype})
+            </>
+          )}
+        </h3>
+        <h3>Aliases</h3>
+        <NodeAliasList node={node} />
+        <h3>Description</h3>
+        <p>{node.description}</p>
+      </section>
+    </>
   );
 };
 

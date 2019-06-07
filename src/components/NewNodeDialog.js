@@ -35,6 +35,8 @@ const NewNodeDialog = ({
   const handleSubmit = () => {
     onNewNode({
       type,
+      subtype,
+      name,
     });
   };
 

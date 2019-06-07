@@ -16,11 +16,11 @@ const NodeList = ({
     onEdit(index);
   };
 
-  const nodeItems = nodes.map((node, i) => (
-    <ListItem key={i}>
-      <LinkButton onClick={handleSelect(i)}>{node.name} ({node.type})</LinkButton>
+  const nodeItems = nodes.map(node => (
+    <ListItem key={node.id}>
+      <LinkButton onClick={handleSelect(node.id)}>{node.name} ({node.type})</LinkButton>
       &nbsp;
-      <LinkButton onClick={handleEdit(i)}>Edit</LinkButton>
+      <LinkButton onClick={handleEdit(node.id)}>Edit</LinkButton>
     </ListItem>
   ));
 

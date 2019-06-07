@@ -3,8 +3,8 @@ import UnorderedList from './UnorderedList';
 import ListItem from './ListItem';
 import LinkButton from './LinkButton';
 
-const EntityList = ({
-  entities,
+const NodeList = ({
+  nodes,
   onSelect,
   onEdit,
 }) => {
@@ -16,9 +16,9 @@ const EntityList = ({
     onEdit(index);
   };
 
-  const entityItems = entities.map((entity, i) => (
+  const nodeItems = nodes.map((node, i) => (
     <ListItem key={i}>
-      <LinkButton onClick={handleSelect(i)}>{entity.name} ({entity.type})</LinkButton>
+      <LinkButton onClick={handleSelect(i)}>{node.name} ({node.type})</LinkButton>
       &nbsp;
       <LinkButton onClick={handleEdit(i)}>Edit</LinkButton>
     </ListItem>
@@ -26,9 +26,9 @@ const EntityList = ({
 
   return (
     <UnorderedList>
-      {entityItems}
+      {nodeItems}
     </UnorderedList>
   );
 };
 
-export default EntityList;
+export default NodeList;

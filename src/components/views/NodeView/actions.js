@@ -20,16 +20,16 @@ export const create = selection => ({
   type: 'create',
 });
 
-export const add = entity => ({
+export const add = node => ({
   type: 'add',
   payload: {
-    entity,
+    node,
   },
 });
 
-export const update = entity => ({
+export const update = node => ({
   type: 'update',
   payload: {
-    entity,
+    node,
   },
 });

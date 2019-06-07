@@ -1,8 +1,8 @@
 import * as R from 'ramda';
 
 export const initialState = {
-  entities: [],
-  selectedEntity: undefined,
+  nodes: [],
+  selectedNode: undefined,
   operation: 'browsing',
 };
 
@@ -18,7 +18,7 @@ export const reducer = (state, action) => {
       const { selection } = action.payload;
       return {
         ...state,
-        selectedEntity: selection,
+        selectedNode: selection,
         operation: 'viewing',
       };
     }
@@ -26,7 +26,7 @@ export const reducer = (state, action) => {
       const { selection } = action.payload;
       return {
         ...state,
-        selectedEntity: selection,
+        selectedNode: selection,
         operation: 'editing',
       };
     }
@@ -37,18 +37,18 @@ export const reducer = (state, action) => {
       };
     }
     case 'add': {
-      const { entity } = action.payload;
+      const { node } = action.payload;
       return {
         ...state,
-        entities: R.append(entity, state.entities),
+        nodes: R.append(node, state.nodes),
         operation: 'browsing',
       };
     }
     case 'update': {
-      const { entity } = action.payload;
+      const { node } = action.payload;
       return {
         ...state,
-        entities: R.update(state.selectedEntity, entity, state.entities),
+        nodes: R.update(state.selectedNode, node, state.nodes),
         operation: 'browsing',
       };
     }

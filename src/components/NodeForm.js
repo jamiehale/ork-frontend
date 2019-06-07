@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { allEntityTypes, defaultEntitySubtypeIdFor, entityTypeMap } from '../entity-types';
+import { allNodeTypes, defaultNodeSubtypeIdFor, nodeTypeMap } from '../node-types';
 import Option from './Option';
 import Select from './Select';
 import Label from './Label';
@@ -12,25 +12,25 @@ import SubmitButton from './SubmitButton';
 import ButtonRow from './ButtonRow';
 import Button from './Button';
 
-const EntityForm = ({
+const NodeForm = ({
   buttonLabel,
-  entity,
+  node,
   onSubmit,
   onCancel,
 }) => {
-  const [type, setType] = useState(entity.type);
-  const [subtype, setSubtype] = useState(entity.subtype);
-  const [name, setName] = useState(entity.name);
-  const [aliases, setAliases] = useState(entity.aliases);
-  const [description, setDescription] = useState(entity.description);
+  const [type, setType] = useState(node.type);
+  const [subtype, setSubtype] = useState(node.subtype);
+  const [name, setName] = useState(node.name);
+  const [aliases, setAliases] = useState(node.aliases);
+  const [description, setDescription] = useState(node.description);
 
-  const handleChangeEntityType = (e) => {
-    const newEntityType = e.target.value;
-    setType(newEntityType);
-    setSubtype(defaultEntitySubtypeIdFor(newEntityType));
+  const handleChangeNodeType = (e) => {
+    const newNodeType = e.target.value;
+    setType(newNodeType);
+    setSubtype(defaultNodeSubtypeIdFor(newNodeType));
   };
 
-  const handleChangeEntitySubtype = (e) => {
+  const handleChangeNodeSubtype = (e) => {
     setSubtype(e.target.value);
   };
 
@@ -58,25 +58,25 @@ const EntityForm = ({
     });
   };
 
-  const types = allEntityTypes.map(entityType => (
-    <Option key={entityType.id} value={entityType.id}>{entityType.name}</Option>
+  const types = allNodeTypes.map(nodeType => (
+    <Option key={nodeType.id} value={nodeType.id}>{nodeType.name}</Option>
   ));
 
-  const selectedEntityType = entityTypeMap[type];
-  const subtypes = selectedEntityType.subtypes.map(entitySubtype => (
-    <Option key={entitySubtype.id} value={entitySubtype.id}>{entitySubtype.name}</Option>
+  const selectedNodeType = nodeTypeMap[type];
+  const subtypes = selectedNodeType.subtypes.map(nodeSubtype => (
+    <Option key={nodeSubtype.id} value={nodeSubtype.id}>{nodeSubtype.name}</Option>
   ));
 
   return (
     <Form onSubmit={handleSubmit}>
       <Fieldset>
         <Label htmlFor="type">Type</Label>
-        <Select id="type" value={type} onChange={handleChangeEntityType}>
+        <Select id="type" value={type} onChange={handleChangeNodeType}>
           {types}
         </Select>
         <Label htmlFor="subtype">Subtype</Label>
         {subtypes.length > 0 && (
-          <Select id="subtype" value={subtype} onChange={handleChangeEntitySubtype}>
+          <Select id="subtype" value={subtype} onChange={handleChangeNodeSubtype}>
             {subtypes}
           </Select>
         )}
@@ -99,8 +99,8 @@ const EntityForm = ({
   );
 };
 
-EntityForm.defaultProps = {
+NodeForm.defaultProps = {
   buttonLabel: 'Update',
 };
 
-export default EntityForm;
+export default NodeForm;

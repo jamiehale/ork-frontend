@@ -1,6 +1,6 @@
 import * as R from 'ramda';
 
-export const allEntityTypes = [
+export const allNodeTypes = [
   {
     id: 'creature',
     name: 'Creature',
@@ -90,13 +90,13 @@ export const allEntityTypes = [
   },
 ];
 
-export const entityTypeMap = allEntityTypes.reduce((map, entityType) => ({
+export const nodeTypeMap = allNodeTypes.reduce((map, nodeType) => ({
   ...map,
-  [entityType.id]: entityType,
+  [nodeType.id]: nodeType,
 }), {});
 
-export const defaultEntitySubtypeIdFor = entityTypeId => {
-  const subtype = R.head(entityTypeMap[entityTypeId].subtypes);
+export const defaultNodeSubtypeIdFor = nodeTypeId => {
+  const subtype = R.head(nodeTypeMap[nodeTypeId].subtypes);
   if (subtype) {
     return subtype.id;
   }

@@ -1,5 +1,5 @@
 import React from 'react';
-import EntityView from './components/views/EntityView';
+import NodeView from './components/views/NodeView';
 
 const zhentarim = {
   type: 'group',
@@ -35,7 +35,7 @@ const App = () => {
         <h1>ORK</h1>
       </header>
       <section>
-        <EntityView />
+        <NodeView />
       </section>
     </>
   );

@@ -1,12 +1,12 @@
 import React, { useReducer } from 'react';
-import EntityForm from '../EntityForm';
+import NodeForm from '../NodeForm';
 import Button from '../Button';
-import EntityList from '../EntityList';
-import Entity from '../Entity';
-import { initialState, reducer } from './EntityView/reducer';
-import * as actions from './EntityView/actions';
+import NodeList from '../NodeList';
+import Node from '../Node';
+import { initialState, reducer } from './NodeView/reducer';
+import * as actions from './NodeView/actions';
 
-const defaultEntity = {
+const defaultNode = {
   type: 'creature',
   subtype: 'npc',
   name: 'Joe',
@@ -14,14 +14,14 @@ const defaultEntity = {
   description: '',
 };
 
-const EntityView = () => {
+const NodeView = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const handleSubmit = (entity) => {
+  const handleSubmit = (node) => {
     if (state.operation === 'editing') {
-      dispatch(actions.update(entity));
+      dispatch(actions.update(node));
     } else {
-      dispatch(actions.add(entity));
+      dispatch(actions.add(node));
     }
   };
 
@@ -49,8 +49,8 @@ const EntityView = () => {
   return (
     <>
       <h4>{state.operation}</h4>
-      <EntityList
-        entities={state.entities}
+      <NodeList
+        nodes={state.nodes}
         onSelect={handleSelect}
         onEdit={handleEdit}
       />
@@ -58,21 +58,21 @@ const EntityView = () => {
         <Button onClick={handleAdd}>New</Button>
       )}
       {showView && (
-        <Entity
-          entity={state.entities[state.selectedEntity]}
+        <Node
+          node={state.nodes[state.selectedNode]}
         />
       )}
       {showEditForm && (
-        <EntityForm
-          entity={state.entities[state.selectedEntity]}
+        <NodeForm
+          node={state.nodes[state.selectedNode]}
           onSubmit={handleSubmit}
           onCancel={handleCancel}
         />
       )}
       {showCreateForm && (
-        <EntityForm
+        <NodeForm
           buttonLabel="Create"
-          entity={defaultEntity}
+          node={defaultNode}
           onSubmit={handleSubmit}
           onCancel={handleCancel}
         />
@@ -81,4 +81,4 @@ const EntityView = () => {
   );
 };
 
-export default EntityView;
+export default NodeView;

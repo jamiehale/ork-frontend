@@ -3,8 +3,8 @@ import NodeForm from '../NodeForm';
 import Button from '../Button';
 import NodeList from '../NodeList';
 import Node from '../Node';
-import { initialState, reducer } from './NodeView/reducer';
-import * as actions from './NodeView/actions';
+import { initialState, reducer } from './OldView/reducer';
+import * as actions from './OldView/actions';
 
 const defaultNode = {
   type: 'creature',
@@ -14,7 +14,7 @@ const defaultNode = {
   description: '',
 };
 
-const NodeView = () => {
+const OldView = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleSubmit = (node) => {
@@ -81,4 +81,4 @@ const NodeView = () => {
   );
 };
 
-export default NodeView;
+export default OldView;

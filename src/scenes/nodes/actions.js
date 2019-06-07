@@ -1,9 +1,9 @@
-export const showNewNodeDialog = () => ({
-  type: 'showNewNodeDialog',
+export const browse = () => ({
+  type: 'browse',
 });
 
-export const hideNewNodeDialog = () => ({
-  type: 'hideNewNodeDialog',
+export const newNode = () => ({
+  type: 'new',
 });
 
 export const select = selectedId => ({
@@ -25,12 +25,4 @@ export const create = (newNode) => ({
   payload: {
     newNode,
   },
-});
-
-export const cancelCreate = () => ({
-  type: 'cancelCreate',
-});
-
-export const cancelUpdate = () => ({
-  type: 'cancelUpdate',
 });

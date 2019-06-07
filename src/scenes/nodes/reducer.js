@@ -1,58 +1,47 @@
-import * as R from 'ramda';
-
 export const initialState = {
   selectedId: undefined,
-  editing: false,
+  newNode: undefined,
+  mode: 'browse',
 };
 
 export const reducer = (state, action) => {
   switch (action.type) {
-    case 'showNewNodeDialog': {
+    case 'browse': {
       return {
-        ...state,
-        showNewNodeDialog: true,
+        selectedId: undefined,
+        newNode: undefined,
+        mode: 'browse',
       };
     }
-    case 'hideNewNodeDialog': {
+    case 'new': {
       return {
-        ...state,
-        showNewNodeDialog: false,
+        selectedId: undefined,
+        newNode: undefined,
+        mode: 'new',
       };
     }
     case 'select': {
       const { selectedId } = action.payload;
       return {
-        ...state,
         selectedId,
-        editing: false,
+        newNode: undefined,
+        mode: 'view',
       };
     }
     case 'edit': {
       const { selectedId } = action.payload;
       return {
-        ...state,
         selectedId,
-        editing: true,
+        newNode: undefined,
+        mode: 'edit',
       };
     }
     case 'create': {
       const { newNode } = action.payload;
       return {
-        ...state,
-        showNewNodeDialog: false,
-        newNode,
-      };
-    }
-    case 'cancelCreate': {
-      return {
-        ...state,
-        newNode: undefined,
-      };
-    }
-    case 'cancelUpdate': {
-      return {
-        ...state,
         selectedId: undefined,
+        newNode,
+        mode: 'create',
       };
     }
     default: {

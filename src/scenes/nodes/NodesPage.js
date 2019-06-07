@@ -32,7 +32,7 @@ const NodesPage = ({
   const [state, dispatch] = useLoggingReducer(reducer, initialState);
 
   const handleNewNodeButtonClick = () => {
-    dispatch(actions.showNewNodeDialog());
+    dispatch(actions.newNode());
   };
   
   const handleNewNode = (newNode) => {
@@ -40,16 +40,16 @@ const NodesPage = ({
   };
 
   const handleNewNodeDialogCancel = () => {
-    dispatch(actions.hideNewNodeDialog());
+    dispatch(actions.browse());
   };
 
   const handleCreateNode = (newNode) => {
     addNode(newNode);
-    dispatch(actions.cancelCreate());
+    dispatch(actions.browse());
   };
 
   const handleCancelCreateNode = () => {
-    dispatch(actions.cancelCreate());
+    dispatch(actions.browse());
   };
 
   const handleSelectNode = (nodeId) => {
@@ -62,15 +62,12 @@ const NodesPage = ({
 
   const handleUpdate = (updatedNode) => {
     updateNode(updatedNode);
-    dispatch(actions.cancelCreate());
+    dispatch(actions.browse());
   };
 
   const handleCancelUpdate = () => {
-    dispatch(actions.cancelUpdate());
+    dispatch(actions.browse());
   };
-
-  const isEditing = state.selectedId && state.editing;
-  const isViewing = state.selectedId && !state.editing;
 
   return (
     <DefaultLayout>
@@ -84,7 +81,7 @@ const NodesPage = ({
           />
         </LeftColumn>
         <RightColumn debug="green">
-          {state.newNode && (
+          {state.mode === 'create' && (
             <NodeForm
               buttonLabel="Create"
               node={state.newNode}
@@ -92,7 +89,7 @@ const NodesPage = ({
               onCancel={handleCancelCreateNode}
             />
           )}
-          {isEditing && (
+          {state.mode === 'edit' && (
             <NodeForm
               buttonLabel="Update"
               node={nodesById[state.selectedId]}
@@ -100,7 +97,7 @@ const NodesPage = ({
               onCancel={handleCancelUpdate}
             />
           )}
-          {isViewing && (
+          {state.mode === 'view' && (
             <Node
               node={nodesById[state.selectedId]}
               onEdit={handleEditNode}
@@ -108,7 +105,7 @@ const NodesPage = ({
           )}
         </RightColumn>
       </FlexRow>
-      {state.showNewNodeDialog && (
+      {state.mode === 'new' && (
         <NewNodeDialog
           onNewNode={handleNewNode}
           onCancel={handleNewNodeDialogCancel}

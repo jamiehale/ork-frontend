@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import * as R from 'ramda';
 import useStateWithSubstate from '../hooks/state-with-substate';
 import { allNodeTypes, nodeTypeMap } from '../node-types';

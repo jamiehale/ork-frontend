@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import * as R from 'ramda';
 
-const useStateWithSubstate = (initialState, substateMap, f = R.identity) => {
-  const [type, setType] = useState(initialState);
-
-  return [type, f(substateMap[type]), setType];
+const useStateWithSubstate = (substateMap, fn, initialState) => {
+  const [state, setState] = useState(initialState || R.keys(substateMap)[0]);
+  
+  const mappingFn = fn || R.identity;
+  return [state, mappingFn(substateMap[state]), setState];
 };
 
 export default useStateWithSubstate;

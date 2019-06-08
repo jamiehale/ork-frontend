@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { allNodeTypes, defaultNodeSubtypeIdFor, nodeTypeMap } from '../node-types';
+import { allCategories, defaultTypeForCategoryId, categoryMap } from '../categories';
 import Option from './Option';
 import Select from './Select';
 import Label from './Label';
@@ -19,20 +19,20 @@ const NodeForm = ({
   onSubmit,
   onCancel,
 }) => {
+  const [category, setCategory] = useState(node.category);
   const [type, setType] = useState(node.type);
-  const [subtype, setSubtype] = useState(node.subtype);
   const [name, setName] = useState(node.name);
   const [aliases, setAliases] = useState(node.aliases || []);
   const [description, setDescription] = useState(node.description || '');
   const focusRef = useAutoFocus();
 
-  const handleChangeNodeType = (newType) => {
-    setType(newType);
-    setSubtype(defaultNodeSubtypeIdFor(newType));
+  const handleChangeCategory = (newCategory) => {
+    setCategory(newCategory);
+    setType(defaultTypeForCategoryId(newCategory));
   };
 
-  const handleChangeNodeSubtype = (newSubtype) => {
-    setSubtype(newSubtype);
+  const handleChangeNodeType = (newType) => {
+    setType(newType);
   };
 
   const handleChangeName = (newName) => {
@@ -50,34 +50,34 @@ const NodeForm = ({
   const handleSubmit = () => {
     onSubmit({
       ...node,
+      category,
       type,
-      subtype,
       name,
       aliases,
       description,
     });
   };
 
-  const types = allNodeTypes.map(nodeType => (
-    <Option key={nodeType.id} value={nodeType.id}>{nodeType.name}</Option>
+  const categoryOptions = allCategories.map(category => (
+    <Option key={category.id} value={category.id}>{category.name}</Option>
   ));
 
-  const selectedNodeType = nodeTypeMap[type];
-  const subtypes = selectedNodeType.subtypes.map(nodeSubtype => (
-    <Option key={nodeSubtype.id} value={nodeSubtype.id}>{nodeSubtype.name}</Option>
+  const selectedCategory = categoryMap[category];
+  const typeOptions = selectedCategory.types.map(type => (
+    <Option key={type.id} value={type.id}>{type.name}</Option>
   ));
 
   return (
     <Form onSubmit={handleSubmit}>
       <Fieldset>
-        <Label htmlFor="type">Type</Label>
-        <Select id="type" value={type} onChange={handleChangeNodeType}>
-          {types}
+        <Label htmlFor="category">Category</Label>
+        <Select id="category" value={category} onChange={handleChangeCategory}>
+          {categoryOptions}
         </Select>
-        <Label htmlFor="subtype">Subtype</Label>
-        {subtypes.length > 0 && (
-          <Select id="subtype" value={subtype} onChange={handleChangeNodeSubtype}>
-            {subtypes}
+        <Label htmlFor="type">Type</Label>
+        {typeOptions.length > 0 && (
+          <Select id="type" value={type} onChange={handleChangeNodeType}>
+            {typeOptions}
           </Select>
         )}
       </Fieldset>

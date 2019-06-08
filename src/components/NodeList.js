@@ -18,7 +18,7 @@ const NodeList = ({
 
   const nodeItems = nodes.map(node => (
     <ListItem key={node.id}>
-      <LinkButton onClick={handleSelect(node.id)}>{node.name} ({node.type})</LinkButton>
+      <LinkButton onClick={handleSelect(node.id)}>{node.name} ({node.category})</LinkButton>
       &nbsp;
       <LinkButton onClick={handleEdit(node.id)}>Edit</LinkButton>
     </ListItem>

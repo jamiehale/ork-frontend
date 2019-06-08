@@ -1,10 +1,10 @@
 import * as R from 'ramda';
 
-export const allNodeTypes = [
+export const allCategories = [
   {
     id: 'creature',
     name: 'Creature',
-    subtypes: [
+    types: [
       {
         id: 'pc',
         name: 'PC',
@@ -22,7 +22,7 @@ export const allNodeTypes = [
   {
     id: 'location',
     name: 'Location',
-    subtypes: [
+    types: [
       {
         id: 'continent',
         name: 'Continent',
@@ -60,7 +60,7 @@ export const allNodeTypes = [
   {
     id: 'group',
     name: 'Group/Affiliation',
-    subtypes: [
+    types: [
       {
         id: 'faction',
         name: 'Faction',
@@ -86,19 +86,19 @@ export const allNodeTypes = [
   {
     id: 'item',
     name: 'Item',
-    subtypes: [],
+    types: [],
   },
 ];
 
-export const nodeTypeMap = allNodeTypes.reduce((map, nodeType) => ({
+export const categoryMap = allCategories.reduce((map, category) => ({
   ...map,
-  [nodeType.id]: nodeType,
+  [category.id]: category,
 }), {});
 
-export const defaultNodeSubtypeIdFor = nodeTypeId => {
-  const subtype = R.head(nodeTypeMap[nodeTypeId].subtypes);
-  if (subtype) {
-    return subtype.id;
+export const defaultTypeForCategoryId = categoryId => {
+  const type = R.head(categoryMap[categoryId].types);
+  if (type) {
+    return type.id;
   }
   return undefined;
 };

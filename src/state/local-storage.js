@@ -1,6 +1,6 @@
 import * as R from 'ramda';
 
-const filteredState = state => R.pick(['session'], state);
+const filteredState = state => R.pick(['session', 'nodes'], state);
 
 export const loadState = () => {
   try {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as R from 'ramda';
-import useStateWithSubstate from '../hooks/state-with-substate';
-import { allNodeTypes, nodeTypeMap } from '../node-types';
+import useCategoryWithType from '../hooks/state-with-substate';
+import { allCategories, categoryMap } from '../categories';
 import Dialog from './Dialog';
 import Form from './Form';
 import Fieldset from './Fieldset';
@@ -18,37 +18,37 @@ const NewNodeDialog = ({
   onNewNode,
   onCancel,
 }) => {
-  const [type, subtypes, setType] = useStateWithSubstate('creature', nodeTypeMap, R.prop('subtypes'));
-  const [subtype, setSubtype] = useState('pc');
+  const [category, types, setCategory] = useCategoryWithType(categoryMap, R.prop('types'));
+  const [type, setType] = useState(types[0].id);
   const [name, setName] = useState('');
   const autoFocusRef = useAutoFocus();
 
   const handleSubmit = () => {
     onNewNode({
+      category,
       type,
-      subtype,
       name,
     });
+  };
+
+  const handleChangeCategory = (newCategory) => {
+    setCategory(newCategory);
   };
 
   const handleChangeType = (newType) => {
     setType(newType);
   };
 
-  const handleChangeSubtype = (newSubtype) => {
-    setSubtype(newSubtype);
-  };
-
   const handleChangeName = (newName) => {
     setName(newName);
   };
 
-  const typeOptions = allNodeTypes.map(type => (
+  const categoryOptions = allCategories.map(type => (
     <Option key={type.id} value={type.id}>{type.name}</Option>
   ));
 
-  const subtypeOptions = subtypes.map(subtype => (
-    <Option key={subtype.id} value={subtype.id}>{subtype.name}</Option>
+  const typeOptions = types.map(type => (
+    <Option key={type.id} value={type.id}>{type.name}</Option>
   ));
 
   return (
@@ -59,14 +59,14 @@ const NewNodeDialog = ({
           <TextInput ref={autoFocusRef} id="name" value={name} onChange={handleChangeName} />
         </Fieldset>
         <Fieldset>
-          <Label htmlFor="type">Type</Label>
-          <Select id="type" value={type} onChange={handleChangeType}>
-            {typeOptions}
+          <Label htmlFor="category">Category</Label>
+          <Select id="category" value={category} onChange={handleChangeCategory}>
+            {categoryOptions}
           </Select>
-          <Label htmlFor="subtype">Subtype</Label>
-          {subtypes.length > 0 && (
-            <Select id="subtype" value={subtype} onChange={handleChangeSubtype}>
-              {subtypeOptions}
+          <Label htmlFor="type">Type</Label>
+          {types.length > 0 && (
+            <Select id="type" value={type} onChange={handleChangeType}>
+              {typeOptions}
             </Select>
           )}
         </Fieldset>

@@ -16,11 +16,11 @@ const Node = ({
       <section>
         <h2>{node.name}</h2>
         <h3>
-          {node.type}
-          {node.subtype && (
+          {node.category}
+          {node.type && (
             <>
               &nbsp;
-              ({node.subtype})
+              ({node.type})
             </>
           )}
         </h3>

@@ -3,6 +3,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import { ConnectedRouter } from 'connected-react-router';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import NodesPage from './scenes/nodes/NodesPage';
+import CampaignsPage from './scenes/campaigns/CampaignsPage';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -31,7 +32,8 @@ const App = ({
     <GlobalStyle />
     <ConnectedRouter history={history}>
       <Switch>
-        <Redirect exact path="/" to="/nodes" />
+        <Redirect exact path="/" to="/campaigns" />
+        <Route exact path="/campaigns" component={CampaignsPage} />
         <Route exact path="/nodes" component={NodesPage} />
         <Route path="/nodes/:id" component={NodesPage} />
       </Switch>

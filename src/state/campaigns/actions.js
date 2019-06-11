@@ -13,3 +13,19 @@ export const loadAllSuccess = campaigns => ({
 });
 
 export const loadAllFailure = errorAction(actionTypes.LOAD_ALL_CAMPAIGNS_FAILURE);
+
+export const loadRequest = id => ({
+  type: actionTypes.LOAD_CAMPAIGN_REQUEST,
+  payload: {
+    id,
+  },
+});
+
+export const loadSuccess = campaign => ({
+  type: actionTypes.LOAD_CAMPAIGN_SUCCESS,
+  payload: {
+    campaign,
+  },
+});
+
+export const loadFailure = errorAction(actionTypes.LOAD_CAMPAIGN_FAILURE);

@@ -1,35 +1,23 @@
-import React, { useCallback, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import DefaultLayout from '../../layouts/DefaultLayout';
 import ListItem from '../../components/ListItem';
 import UnorderedList from '../../components/UnorderedList';
-import * as campaignActions from '../../state/campaigns/actions';
-import * as campaignSelectors from '../../state/campaigns/selectors';
+import useCampaigns from '../../hooks/campaigns';
 
-const useCampaigns = () => {
-  const dispatch = useDispatch();
-
-  const loadCampaigns = useCallback(() => {
-    dispatch(campaignActions.loadAllRequest());
-  }, [dispatch]);
-
-  const campaigns = useSelector(campaignSelectors.getAllCampaigns);
-
-  return {
-    campaigns,
-    loadCampaigns,
-  };
-};
+const CampaignLink = ({
+  campaign,
+}) => (
+  <Link to={`/campaigns/${campaign.id}`}>{campaign.name}</Link>
+);
 
 const CampaignsPage = () => {
-  const { campaigns, loadCampaigns } = useCampaigns();
-
-  useEffect(() => {
-    loadCampaigns();
-  }, [loadCampaigns]);
+  const { campaigns } = useCampaigns({ forceLoad: true });
 
   const campaignItems = campaigns.map(campaign => (
-    <ListItem key={campaign.id}>{campaign.name}</ListItem>
+    <ListItem key={campaign.id}>
+      <CampaignLink campaign={campaign} />
+    </ListItem>
   ));
 
   return (

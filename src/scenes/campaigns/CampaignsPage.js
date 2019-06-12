@@ -9,7 +9,7 @@ import CampaignLink from './CampaignLink';
 import NewCampaignDialog from './NewCampaignDialog';
 
 const CampaignsPage = () => {
-  const { campaigns, createCampaign } = useCampaigns({ forceLoad: true });
+  const { campaigns, createCampaign } = useCampaigns();
   const { state, showNewCampaignDialog, hideNewCampaignDialog } = useLocalReducer();
 
   const handleNewCampaign = (campaign) => {

@@ -8,21 +8,21 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.LOAD_ALL_CAMPAIGNS_SUCCESS: {
-      const { campaigns } = action.payload;
+    case actionTypes.LOAD_ALL_PEOPLE_SUCCESS: {
+      const { people } = action.payload;
       return {
         ...state,
-        ids: campaigns.map(R.prop('id')),
-        byId: campaigns.reduce((byId, campaign) => ({ ...byId, [campaign.id]: campaign }), {}),
+        ids: people.map(R.prop('id')),
+        byId: people.reduce((byId, person) => ({ ...byId, [person.id]: person }), {}),
       };
     }
-    case actionTypes.LOAD_CAMPAIGN_SUCCESS: {
-      const { campaign } = action.payload;
+    case actionTypes.LOAD_PERSON_SUCCESS: {
+      const { person } = action.payload;
       return {
         ...state,
-        ids: [campaign.id],
+        ids: [person.id],
         byId: {
-          [campaign.id]: campaign,
+          [person.id]: person,
         },
       };
     }

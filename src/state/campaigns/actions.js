@@ -29,3 +29,19 @@ export const loadSuccess = campaign => ({
 });
 
 export const loadFailure = errorAction(actionTypes.LOAD_CAMPAIGN_FAILURE);
+
+export const createCampaignRequest = campaign => ({
+  type: actionTypes.CREATE_CAMPAIGN_REQUEST,
+  payload: {
+    campaign,
+  },
+});
+
+export const createCampaignSuccess = campaign => ({
+  type: actionTypes.CREATE_CAMPAIGN_SUCCESS,
+  payload: {
+    campaign,
+  },
+});
+
+export const createCampaignFailure = errorAction(actionTypes.CREATE_CAMPAIGN_FAILURE);

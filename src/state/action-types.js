@@ -1,3 +1,5 @@
+export const SET_ACTIVE_CAMPAIGN_ID = 'SET_ACTIVE_CAMPAIGN_ID';
+
 export const ADD_NODE = 'ADD_NODE';
 export const UPDATE_NODE = 'UPDATE_NODE';
 

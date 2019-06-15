@@ -45,3 +45,10 @@ export const createCampaignSuccess = campaign => ({
 });
 
 export const createCampaignFailure = errorAction(actionTypes.CREATE_CAMPAIGN_FAILURE);
+
+export const setActiveCampaignId = campaignId => ({
+  type: actionTypes.SET_ACTIVE_CAMPAIGN_ID,
+  payload: {
+    campaignId,
+  },
+});

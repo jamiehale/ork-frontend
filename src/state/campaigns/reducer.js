@@ -4,6 +4,7 @@ import * as actionTypes from '../action-types';
 const initialState = {
   ids: [],
   byId: {},
+  activeId: undefined,
 };
 
 const reducer = (state = initialState, action) => {
@@ -20,10 +21,18 @@ const reducer = (state = initialState, action) => {
       const { campaign } = action.payload;
       return {
         ...state,
-        ids: [campaign.id],
+        ids: R.uniq([...state.ids, campaign.id]),
         byId: {
+          ...state.byId,
           [campaign.id]: campaign,
         },
+      };
+    }
+    case actionTypes.SET_ACTIVE_CAMPAIGN_ID: {
+      const { campaignId } = action.payload;
+      return {
+        ...state,
+        activeId: campaignId,
       };
     }
     default: {

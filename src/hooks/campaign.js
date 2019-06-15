@@ -7,7 +7,9 @@ const useCampaign = (campaignId) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(actions.loadRequest(campaignId));
+    if (campaignId) {
+      dispatch(actions.loadRequest(campaignId));
+    }
   }, [dispatch, campaignId]);
 
   const campaign = useSelector(selectors.getCampaign(campaignId));

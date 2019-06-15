@@ -5,6 +5,8 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 import NodesPage from './scenes/nodes/NodesPage';
 import CampaignsPage from './scenes/campaigns/CampaignsPage';
 import CampaignPage from './scenes/campaign/CampaignPage';
+import PeoplePage from './scenes/people/PeoplePage';
+import PersonPage from './scenes/person/PersonPage';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -36,6 +38,8 @@ const App = ({
         <Redirect exact path="/" to="/campaigns" />
         <Route exact path="/campaigns" component={CampaignsPage} />
         <Route path="/campaigns/:id" component={CampaignPage} />
+        <Route exact path="/people" component={PeoplePage} />
+        <Route path="/people/:id" component={PersonPage} />
         <Route exact path="/nodes" component={NodesPage} />
         <Route path="/nodes/:id" component={NodesPage} />
       </Switch>

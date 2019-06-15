@@ -13,8 +13,8 @@ const useCampaignPeople = (campaignId) => {
   const people = useSelector(selectors.getAllPeople);
 
   const createPerson = useCallback((person) => {
-    dispatch(actions.createPersonRequest(person));
-  }, [dispatch]);
+    dispatch(actions.createPersonRequest({ ...person, campaignId }));
+  }, [campaignId, dispatch]);
 
   return {
     people,

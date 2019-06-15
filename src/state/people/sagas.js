@@ -7,37 +7,37 @@ import * as personActions from './actions';
 function* loadAllPeople(action) {
   try {
     const { campaignId } = action.payload;
-    const { data: campaigns } = yield call(Api.fetchAllPeople, );
-    yield put(personActions.loadAllSuccess(campaigns));
+    const { data: people } = yield call(Api.fetchAllPeople, campaignId);
+    yield put(personActions.loadAllSuccess(people));
   } catch (e) {
     yield put(personActions.loadAllFailure(e));
   }
 }
 
-function* loadCampaign(action) {
+function* loadPerson(action) {
   try {
     const { id } = action.payload;
-    const { data: campaign } = yield call(Api.fetchCampaign, id);
-    yield put(personActions.loadSuccess(campaign));
+    const { data: person } = yield call(Api.fetchPerson, id);
+    yield put(personActions.loadSuccess(person));
   } catch (e) {
     yield put(personActions.loadFailure(e));
   }
 }
 
-function* createCampaign(action) {
+function* createPerson(action) {
   try {
-    const { campaign } = action.payload;
-    const { data: newCampaign } = yield call(Api.createCampaign, campaign);
-    yield put(push(`/campaigns/${newCampaign.id}`));
+    const { person } = action.payload;
+    const { data: newPerson } = yield call(Api.createPerson, person);
+    yield put(push(`/people/${newPerson.id}`));
   } catch (e) {
-    yield put(personActions.createCampaignFailure(e));
+    yield put(personActions.createPersonFailure(e));
   }
 }
 
 function* root() {
-  yield takeEvery(actionTypes.LOAD_ALL_CAMPAIGNS_REQUEST, loadAllPeople);
-  yield takeEvery(actionTypes.LOAD_CAMPAIGN_REQUEST, loadCampaign);
-  yield takeEvery(actionTypes.CREATE_CAMPAIGN_REQUEST, createCampaign);
+  yield takeEvery(actionTypes.LOAD_ALL_PEOPLE_REQUEST, loadAllPeople);
+  yield takeEvery(actionTypes.LOAD_PERSON_REQUEST, loadPerson);
+  yield takeEvery(actionTypes.CREATE_PERSON_REQUEST, createPerson);
 }
 
 export default root;

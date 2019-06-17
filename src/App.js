@@ -11,6 +11,8 @@ import PlacesPage from './scenes/places/PlacesPage';
 import PlacePage from './scenes/place/PlacePage';
 import ThingsPage from './scenes/things/ThingsPage';
 import ThingPage from './scenes/thing/ThingPage';
+import ElementsPage from './scenes/elements/ElementsPage';
+import ElementPage from './scenes/element/ElementPage';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -48,6 +50,8 @@ const App = ({
         <Route path="/places/:id" component={PlacePage} />
         <Route exact path="/things" component={ThingsPage} />
         <Route path="/things/:id" component={ThingPage} />
+        <Route exact path="/elements" component={ElementsPage} />
+        <Route path="/elements/:id" component={ElementPage} />
         <Route exact path="/nodes" component={NodesPage} />
         <Route path="/nodes/:id" component={NodesPage} />
       </Switch>

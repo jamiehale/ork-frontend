@@ -5,6 +5,7 @@ import campaigns from './campaigns/reducer';
 import people from './people/reducer';
 import places from './places/reducer';
 import things from './things/reducer';
+import elements from './elements/reducer';
 import nodes from './nodes/reducer';
 import categories from './categories/reducer';
 
@@ -15,6 +16,7 @@ export default history => combineReducers({
   people,
   places,
   things,
+  elements,
   nodes,
   categories,
 });

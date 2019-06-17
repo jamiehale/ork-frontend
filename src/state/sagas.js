@@ -4,6 +4,7 @@ import campaignsSaga from './campaigns/sagas';
 import peopleSaga from './people/sagas';
 import placesSaga from './places/sagas';
 import thingsSaga from './things/sagas';
+import elementsSaga from './elements/sagas';
 import nodesSaga from './nodes/sagas';
 import categoriesSaga from './categories/sagas';
 
@@ -13,6 +14,7 @@ function* rootSaga() {
   yield fork(peopleSaga);
   yield fork(placesSaga);
   yield fork(thingsSaga);
+  yield fork(elementsSaga);
   yield fork(nodesSaga);
   yield fork(categoriesSaga);
 }

@@ -7,6 +7,7 @@ import withRemappedRouterParam from '../../components/RemappedRouterParam';
 import CampaignPeople from './CampaignPeople';
 import CampaignPlaces from './CampaignPlaces';
 import CampaignThings from './CampaignThings';
+import CampaignElements from './CampaignElements';
 
 const CampaignPage = ({
   campaignId,
@@ -21,6 +22,7 @@ const CampaignPage = ({
           <CampaignPeople campaign={campaign} />
           <CampaignPlaces campaign={campaign} />
           <CampaignThings campaign={campaign} />
+          <CampaignElements campaign={campaign} />
         </>
       )}
     </DefaultLayout>

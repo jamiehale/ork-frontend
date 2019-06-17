@@ -7,6 +7,8 @@ import CampaignsPage from './scenes/campaigns/CampaignsPage';
 import CampaignPage from './scenes/campaign/CampaignPage';
 import PeoplePage from './scenes/people/PeoplePage';
 import PersonPage from './scenes/person/PersonPage';
+import PlacesPage from './scenes/places/PlacesPage';
+import PlacePage from './scenes/place/PlacePage';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -40,6 +42,8 @@ const App = ({
         <Route path="/campaigns/:id" component={CampaignPage} />
         <Route exact path="/people" component={PeoplePage} />
         <Route path="/people/:id" component={PersonPage} />
+        <Route exact path="/places" component={PlacesPage} />
+        <Route path="/places/:id" component={PlacePage} />
         <Route exact path="/nodes" component={NodesPage} />
         <Route path="/nodes/:id" component={NodesPage} />
       </Switch>

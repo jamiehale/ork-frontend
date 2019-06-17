@@ -2,13 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Screen = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 0px;
   width: 100vw;
   height: 100vh;
   z-index: 100;
-  background: rgba(255,255,255,0.6);
+  background: rgba(255,0,0,0.8);
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -9,6 +9,8 @@ import PeoplePage from './scenes/people/PeoplePage';
 import PersonPage from './scenes/person/PersonPage';
 import PlacesPage from './scenes/places/PlacesPage';
 import PlacePage from './scenes/place/PlacePage';
+import ThingsPage from './scenes/things/ThingsPage';
+import ThingPage from './scenes/thing/ThingPage';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -44,6 +46,8 @@ const App = ({
         <Route path="/people/:id" component={PersonPage} />
         <Route exact path="/places" component={PlacesPage} />
         <Route path="/places/:id" component={PlacePage} />
+        <Route exact path="/things" component={ThingsPage} />
+        <Route path="/things/:id" component={ThingPage} />
         <Route exact path="/nodes" component={NodesPage} />
         <Route path="/nodes/:id" component={NodesPage} />
       </Switch>

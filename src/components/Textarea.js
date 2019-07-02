@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const StyledTextarea = styled.textarea``;
 
-const Textarea = ({
+const TextArea = ({
   onChange,
   ...props,
 }) => {
@@ -19,4 +19,4 @@ const Textarea = ({
   );
 };
 
-export default Textarea;
+export default TextArea;

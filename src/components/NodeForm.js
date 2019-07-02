@@ -6,7 +6,7 @@ import Label from './Label';
 import Fieldset from './Fieldset';
 import Form from './Form';
 import TextInput from './TextInput';
-import Textarea from './Textarea';
+import TextArea from './TextArea';
 import AliasList from './AliasList';
 import SubmitButton from './SubmitButton';
 import ButtonRow from './ButtonRow';
@@ -89,7 +89,7 @@ const NodeForm = ({
       </Fieldset>
       <Fieldset>
         <Label htmlFor="description">Description</Label>
-        <Textarea id="description" value={description} onChange={handleChangeDescription} />
+        <TextArea id="description" value={description} onChange={handleChangeDescription} />
       </Fieldset>
       <ButtonRow>
         <SubmitButton>{buttonLabel}</SubmitButton>

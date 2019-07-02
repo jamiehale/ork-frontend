@@ -1,6 +1,7 @@
 import { useReducer, useMemo } from 'react';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 import * as validators from 'calidators';
+import * as R from 'ramda';
 
 const initialState = {
   values: {},
@@ -99,7 +100,10 @@ const useValidation = (config) => {
       onSubmit: e => {
         dispatch({ type: 'submit' });
         if (config.onSubmit) {
-          config.onSubmit(state);
+          const errorCount = R.without([null], R.values(state.errors)).length;
+          if (config.submitWithErrors || errorCount === 0) {
+            config.onSubmit(state);
+          }
         }
       },
     }),
@@ -117,7 +121,7 @@ const useValidation = (config) => {
         dispatch({ type: 'blur', payload: fieldName });
       },
       name: fieldName,
-      value: state.values[fieldName],
+      value: state.values[fieldName] || '',
     }),
   };
 };

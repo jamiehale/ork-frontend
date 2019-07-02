@@ -5,7 +5,7 @@ import UnorderedList from '../../components/UnorderedList';
 import ListItem from '../../components/ListItem';
 import Button from '../../components/Button';
 import PlaceLink from '../../components/PlaceLink';
-import NewPlaceDialog from './NewPlaceDialog';
+import NewPlaceForm from './NewPlaceForm';
 
 const Container = styled.section`
   position: relative;
@@ -36,7 +36,7 @@ const CampaignPlaces = ({
       </UnorderedList>
       <Button onClick={() => setShowDialog(true)}>New Place</Button>
       {showDialog && (
-        <NewPlaceDialog
+        <NewPlaceForm
           onCancel={() => setShowDialog(false)}
           onCreate={handleNewPlace}
         />

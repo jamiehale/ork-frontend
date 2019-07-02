@@ -21,6 +21,10 @@ const ElementPage = ({
           {element.campaignId && (
             <h2>Campaign: <CampaignLink campaign={campaign} /></h2>
           )}
+          <section>
+            {element.type}
+          </section>
+          <Button onClick={handleEdit}
         </>
       )}
     </DefaultLayout>

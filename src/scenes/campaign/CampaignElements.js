@@ -5,7 +5,7 @@ import UnorderedList from '../../components/UnorderedList';
 import ListItem from '../../components/ListItem';
 import Button from '../../components/Button';
 import ElementLink from '../../components/ElementLink';
-import NewElementDialog from './NewElementDialog';
+import NewElementForm from './NewElementForm';
 
 const Container = styled.section`
   position: relative;
@@ -36,7 +36,7 @@ const CampaignElements = ({
       </UnorderedList>
       <Button onClick={() => setShowDialog(true)}>New Element</Button>
       {showDialog && (
-        <NewElementDialog
+        <NewElementForm
           onCancel={() => setShowDialog(false)}
           onCreate={handleNewElement}
         />

@@ -5,7 +5,7 @@ import UnorderedList from '../../components/UnorderedList';
 import ListItem from '../../components/ListItem';
 import Button from '../../components/Button';
 import PersonLink from '../../components/PersonLink';
-import NewPersonDialog from './NewPersonDialog';
+import NewPersonForm from './NewPersonForm';
 
 const Container = styled.section`
   position: relative;
@@ -36,7 +36,7 @@ const CampaignPeople = ({
       </UnorderedList>
       <Button onClick={() => setShowDialog(true)}>New Person</Button>
       {showDialog && (
-        <NewPersonDialog
+        <NewPersonForm
           onCancel={() => setShowDialog(false)}
           onCreate={handleNewPerson}
         />

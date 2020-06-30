@@ -5,6 +5,7 @@ import withRemappedRouterParam from '../../components/RemappedRouterParam';
 import DefaultLayout from '../../layouts/DefaultLayout';
 import useElement from '../../hooks/element';
 import CampaignLink from '../../components/CampaignLink';
+import Button from '../../components/Button';
 import useCampaign from '../../hooks/campaign';
 
 const ElementPage = ({
@@ -12,6 +13,10 @@ const ElementPage = ({
 }) => {
   const { element } = useElement(elementId);
   const { campaign } = useCampaign(element ? element.campaignId : undefined);
+
+  const handleEdit = () => {
+
+  };
 
   return (
     <DefaultLayout>
@@ -24,7 +29,7 @@ const ElementPage = ({
           <section>
             {element.type}
           </section>
-          <Button onClick={handleEdit}
+          <Button onClick={handleEdit}>Edit</Button>
         </>
       )}
     </DefaultLayout>

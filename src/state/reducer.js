@@ -6,7 +6,6 @@ import people from './people/reducer';
 import places from './places/reducer';
 import things from './things/reducer';
 import elements from './elements/reducer';
-import nodes from './nodes/reducer';
 import categories from './categories/reducer';
 
 export default history => combineReducers({
@@ -17,6 +16,5 @@ export default history => combineReducers({
   places,
   things,
   elements,
-  nodes,
   categories,
 });

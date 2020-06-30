@@ -2,7 +2,6 @@ import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { ConnectedRouter } from 'connected-react-router';
 import { Route, Redirect, Switch } from 'react-router-dom';
-import NodesPage from './scenes/nodes/NodesPage';
 import CampaignsPage from './scenes/campaigns/CampaignsPage';
 import CampaignPage from './scenes/campaign/CampaignPage';
 import PeoplePage from './scenes/people/PeoplePage';
@@ -52,8 +51,6 @@ const App = ({
         <Route path="/things/:id" component={ThingPage} />
         <Route exact path="/elements" component={ElementsPage} />
         <Route path="/elements/:id" component={ElementPage} />
-        <Route exact path="/nodes" component={NodesPage} />
-        <Route path="/nodes/:id" component={NodesPage} />
       </Switch>
     </ConnectedRouter>
   </Container>

@@ -16,10 +16,8 @@ const formConfig = onCreate => ({
       isRequired: { message: 'Please give your campaign a name' },
     },
   },
-  onSubmit: ({ values, errors }) => {
-    if (!errors) {
-      onCreate(values);
-    }
+  onSubmit: ({ values }) => {
+    onCreate(values);
   },
 });
 

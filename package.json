@@ -7,7 +7,7 @@
     "calidators": "^3.0.2",
     "connected-react-router": "^6.4.0",
     "history": "^4.9.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "prop-types": "^15.7.2",
     "ramda": "^0.26.1",
     "react": "^16.8.6",
